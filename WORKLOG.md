@@ -1,17 +1,17 @@
 # Work Log
 
-## GROUP MEMBER 1
+## Max Zabranov
 
-### date x
+### 5/22
 
-info
+changed worklog and attempted branching
 
 ### date y
 
 info
 
 
-## GROUP MEMBER 2
+## Suhana Kumar
 
 ### date x
 
