@@ -6,9 +6,9 @@
 
 changed worklog and attempted branching
 
-### date y
+### 5/23
 
-info
+worked on setup in the game class
 
 
 ## Suhana Kumar
