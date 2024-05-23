@@ -13,9 +13,9 @@ info
 
 ## Suhana Kumar
 
-### date x
+### 5/23
 
-info
+implemented basic methods and variables for rabbit class, including subclasses
 
 ### date y
 
