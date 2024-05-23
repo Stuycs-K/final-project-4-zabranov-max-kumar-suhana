@@ -1,3 +1,3 @@
-public class TankRabbit {
+public class TankRabbit extends Rabbit {
     
 }

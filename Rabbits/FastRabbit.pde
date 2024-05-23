@@ -1,3 +1,3 @@
-public class FastRabbit {
+public class FastRabbit extends Rabbit {
     
 }
