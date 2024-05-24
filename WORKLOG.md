@@ -17,6 +17,6 @@ info
 
 implemented basic methods and variables for rabbit class, including subclasses, need to complete loop to test
 
-### date y
+### 5/ 24
 
-info
+move, getter, setter methods
