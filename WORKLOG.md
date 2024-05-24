@@ -15,7 +15,7 @@ info
 
 ### 5/23
 
-implemented basic methods and variables for rabbit class, including subclasses
+implemented basic methods and variables for rabbit class, including subclasses, need to complete loop to test
 
 ### date y
 
