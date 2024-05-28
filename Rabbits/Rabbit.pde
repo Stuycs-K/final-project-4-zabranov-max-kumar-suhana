@@ -21,6 +21,7 @@ public class Rabbit {
   }
   
   public void move(){
+  Point temp;
   point(this.x, this.y);
   }
 
