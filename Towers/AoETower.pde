@@ -1,3 +1,3 @@
-public class AoETower {
+public class AoETower extends Tower {
     
 }
