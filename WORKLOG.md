@@ -20,3 +20,7 @@ implemented basic methods and variables for rabbit class, including subclasses, 
 ### 5/ 24
 
 move, getter, setter methods
+
+
+### 5/27
+worked on identifying pathway
