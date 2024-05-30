@@ -22,4 +22,5 @@ public class Map {
         if (canBuild()) stroke(#000000);
         else stroke(#FF0000);
         rect(x * cellSize, y * cellSize, cellSize, cellSize);
+        tetessss
       }
