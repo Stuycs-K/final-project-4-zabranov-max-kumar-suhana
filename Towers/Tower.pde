@@ -1,6 +1,7 @@
 public class Tower {
     int range, damage;
     double fireRate;
+    int mouseX, mouseY;
     int x, y;
     
   
@@ -18,7 +19,9 @@ public class Tower {
     }
     
     public void mouseClicked(int x, int y){
-      
+      this.mouseX = x;
+      this.mouseY = y;
+     
     }
     
     public void draw(){
