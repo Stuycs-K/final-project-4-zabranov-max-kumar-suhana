@@ -1,4 +1,4 @@
-static int _width = 640;
+static int _width = 1000;
 static int _height = (int) (_width * .8);
 static float playheight = _width * .65;
 static float cellSize = _width/20; 
@@ -11,11 +11,12 @@ public void startGame() {}
   public void endGame() {}
   
   public void draw() {
-  PImage img;
-  PImage img2;
-  img = loadImage("grass.jpg");
-  img2 = loadImage("tile.jpg");
-  image(img, 0, 0, _width, _height);
+  PImage grass;
+  PImage path;
+  grass = loadImage("grass.jpg");
+  path = loadImage("path.png");
+  image(grass, 0, 0, _width, _height);
+  image(path, 0, 0, _width, _height);
   mouseHover();
   }
   public void setup() {
