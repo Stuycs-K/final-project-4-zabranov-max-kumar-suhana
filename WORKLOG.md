@@ -30,3 +30,6 @@ worked on identifying pathway
 
 ### 5/29
 buttons for tower class and draw/setup
+
+### 5/30
+cleaning up mehthods in Rabbit and Tower class, once game setup complete, can set game active
