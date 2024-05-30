@@ -24,3 +24,9 @@ move, getter, setter methods
 
 ### 5/27
 worked on identifying pathway
+
+### 5/28
+worked on identifying pathway
+
+### 5/29
+buttons for tower class and draw/setup
