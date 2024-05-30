@@ -6,9 +6,9 @@ public class Tower {
     
   
     
-    public void shoot(double target, int range, int damage4, double fireRate, int x, int y){
+    public Tower(double target, int range, int damage, double fireRate, int x, int y){
       this.range = range;
-      this.damage = damage4;
+      this.damage = damage;
       this.fireRate = fireRate;
       this.x = x;
       this.y = y;

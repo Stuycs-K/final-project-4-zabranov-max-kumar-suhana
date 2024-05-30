@@ -4,7 +4,7 @@ public class AoETower extends Tower {
     int mouseX, mouseY;
     int x, y;
     
-    public void AoETower(){
+    public AoETower(){
       super;
     }
     
