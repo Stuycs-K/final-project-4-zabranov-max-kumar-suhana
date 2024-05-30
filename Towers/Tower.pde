@@ -6,13 +6,19 @@ public class Tower {
     
   
     
-    public Tower(double target, int range, int damage, double fireRate, int x, int y){
+    public Tower(int range, int damage, double fireRate, int x, int y){
       this.range = range;
       this.damage = damage;
       this.fireRate = fireRate;
       this.x = x;
       this.y = y;
     }
+    
+    public void shoot(Rabbit target){
+      
+    }
+    
+    
     
     public void inButtons(){
       bMenu = new MyButton(int w, int h);
