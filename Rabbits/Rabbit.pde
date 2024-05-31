@@ -1,9 +1,11 @@
 public class Rabbit {
-  private int health, x, y, width, height;
+  private int health, width, height;
+  private double x,y;
   private double speed;
   private boolean active;
+  private Rectangle bounds;//need class
     
-  public Rabbit(int x, int y, int width, int height, double speed, int health){
+  public Rabbit(double x, double y, int width, int height, double speed, int health){
     this.x = x;
     this.y = y;
     this.width = width;
@@ -19,6 +21,26 @@ public class Rabbit {
     speed = 5;
     //intended to increase with waves, will switch to var
   }
+  
+  public double getX(){
+    return x;
+  }
+  public double getY(){
+    return y;
+  }
+  publick Recntangle getBounds(){
+    return bounds;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   public void move(){
   Point temp;
