@@ -12,6 +12,7 @@ public class Rabbit {
     this.height = height;
     this.speed = speed;
     this.health = health;
+    bounds = new Rectangle((int) x, (int) y, 32, 32);
   }
   
   public Rabbit(){
@@ -28,9 +29,17 @@ public class Rabbit {
   public double getY(){
     return y;
   }
-  publick Recntangle getBounds(){
+  public Recntangle getBounds(){
     return bounds;
   }
+  public int getHealth(){
+    return health;
+  }
+  
+  public void setLevel(){
+    
+  }
+  
   
   
   
