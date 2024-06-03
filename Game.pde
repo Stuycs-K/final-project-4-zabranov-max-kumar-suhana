@@ -1,46 +1,221 @@
-import java.util.ArrayList;
-static int _width = 1000;
-static int _height = (int) (_width * .8);
-static float playheight = _width * .65;
-static float cellSize = _width/20; 
-static float menuY = playheight + 1;
-static float menuHeight = _height - menuY;
-int[][] Grid = new int[20][16];
+ArrayList<Rabbit> rabbits;
+ArrayList<Tower> towers;
+ArrayList<Bullet> Bullets;
+int wave = 1;
+int spawnInterval = 60;
+int spawnTimer = 0;
+int rabbitsTBulletoSpawn;
+int rabbitsSpawned = 0;
+int rabbitsToSpawn;
+int playerHealth = 100;
+int playerMoney = 100;
+PVector startPoint;
+PVector endPoint;
+boolean placingTower = false;
+boolean upgradingTower = false;
+Tower tempTower;
+Tower selectedTower;
+ArrayList<PVector> pathPoints;
+PImage rabbitImage;
 
-public void startGame() {}
-  
-  public void endGame() {}
-  
-  public void draw() {
-  PImage grass;
-  PImage path;
-  grass = loadImage("grass.jpg");
-  path = loadImage("path.png");
-  image(grass, 0, 0, _width, _height);
-  image(path, 0, 0, _width, _height);
-  Path p = new Path();
-      p.display();
-      p.update();
-  //mouseHover();
+void setup() {
+  size(1000, 800);
+  startPoint = new PVector(-1, width/100*17.5);
+  endPoint = new PVector(width/8, width/100*79.5);
+  rabbits = new ArrayList<Rabbit>();
+  towers = new ArrayList<Tower>();
+  Bullets = new ArrayList<Bullet>();
+  rabbitsToSpawn = 10; // Start with 10 rabbits in wave 1
+  rabbitImage = loadImage("rabbitpic.png"); 
+  pathPoints = new ArrayList<PVector>();
+  pathPoints.add(startPoint);
+  pathPoints.add(new PVector(width/1.29, width/100*17.5));
+  pathPoints.add(new PVector(width/1.29, width/100*32.5));
+  pathPoints.add(new PVector(width/4.425, width/100*32.5));
+  pathPoints.add(new PVector(width/4.425, width/100*47.5));
+  pathPoints.add(new PVector(width/1.289, width/100*47.5));
+  pathPoints.add(new PVector(width/1.289, width/100*67.5));
+  pathPoints.add(new PVector(width/8, width/100*67.5));
+  pathPoints.add(endPoint);
+
+}
+
+void draw() {
+  background(#009900);
+  // Draw path
+  stroke(#808080); // Brown color
+  strokeWeight(40); // Wider path
+  noFill();
+  beginShape();
+  for (PVector point : pathPoints) {
+    vertex(point.x, point.y);
   }
-  public void setup() {
-  size(_width, _height);
-  for (int x = 0; x < Grid.length; x++) {
-    for (int y = 0; y < Grid[0].length; y++) {
-      noFill();
-      stroke(#000000);
-      rect(x * cellSize, y * cellSize, cellSize, cellSize);
+  endShape();
+  noStroke();
+  strokeWeight(4);
+
+
+  // Draw UI
+  fill(color(189, 224,255));
+  rect(0, height - 50, width, 50);
+  fill(0);
+  PFont mono;
+  mono = createFont("RaceSport.ttf", 10);
+  textFont(mono);
+  text("Health: " + playerHealth, 50, height - 20);
+  text("Money: " + playerMoney, 140, height - 20);
+  text("Wave: " + wave, 220, height - 20);
+  fill(255);
+  rect(width/1.265, width/1.315, 160, 30);
+  fill(0);
+  if (mouseX >= 400 && mouseX <= 550 &&
+      mouseY >= 560 && mouseY <= 590) {
+        fill(color(1,147,189));
+      }
+  text("Click to Place Tower", width - 130, height - 20);
+
+  // Spawn rabbits
+  if (rabbitsSpawned < rabbitsToSpawn) {
+    spawnTimer++;
+    if (spawnTimer >= spawnInterval) {
+      rabbits.add(new Rabbit(pathPoints, wave));
+      rabbitsSpawned++;
+      spawnTimer = 0;
     }
   }
-  }
-  /*void mouseHover() {
-    int x = (int) (mouseX / cellSize);
-    int y = (int) (mouseY/cellSize);
-    if (y < Grid[0].length && x < Grid.length) {
-    noFill();
-    stroke(#000000);
-    rect(x * cellSize, y * cellSize, cellSize, cellSize);
+
+  // Update and draw rabbits
+  for (int i = rabbits.size() - 1; i >= 0; i--) {
+    Rabbit r = rabbits.get(i);
+    r.update();
+    r.display();
+    if (r.isDead()) {
+      playerMoney += rabbits.get(i).getMaxHealth(); // Gain money for killing a rabbit
+      rabbits.remove(i);
+    } else if (r.reachedEnd()) {
+      playerHealth -= 10; // Lose health if rabbit reaches the end
+      rabbits.remove(i);
+      if (playerHealth <= 0) {
+        gameOver();
+      }
     }
   }
-  */
-  
+
+  // Update and draw towers
+  for (Tower t : towers) {
+    t.update(rabbits);
+    t.display();
+  }
+
+  // Update and draw Bullets
+  for (int i = Bullets.size() - 1; i >= 0; i--) {
+    Bullet s = Bullets.get(i);
+    s.update();
+    s.display();
+    if (s.hit) {
+      Bullets.remove(i);
+    }
+  }
+
+  // Draw the temporary tower following the cursor
+  if (placingTower) {
+    tempTower.position.set(mouseX, mouseY);
+    tempTower.display();
+  }
+
+  // Check for wave completion
+  if (wave > 15) {
+      fill(0);
+       textSize(32);
+       textAlign(CENTER, CENTER);
+       text("You Win!", width / 2, height / 2);
+       noLoop();
+    }
+  if (rabbits.size() == 0 && rabbitsSpawned >= rabbitsToSpawn) {
+    if (wave < 15){
+    wave++;
+    playerMoney += 50 * wave;
+    rabbitsToSpawn = 10 + wave * 2; // Scale rabbits count with wave number
+    rabbitsSpawned = 0;
+    println("Wave " + wave);
+    }
+    else{
+       fill(0);
+       textSize(32);
+       textAlign(CENTER, CENTER);
+       text("You Win!", width / 2, height / 2);
+       noLoop();
+    }
+   
+  }
+
+  // Display upgrade menu if a tower is selected for upgrading
+  if (upgradingTower && selectedTower != null) {
+    fill(0, 0, 0, 150);
+    rect(width / 2 - 75, height / 2 - 50, 150, 100);
+    fill(255);
+    rect(width / 2 - 70, height / 2 - 45, 140, 90);
+    fill(0);
+    textAlign(CENTER, CENTER);
+    textSize(14);
+    text("Upgrade Tower", width / 2, height / 2 - 30);
+    textSize(12);
+    text("Damage: " + selectedTower.damage, width / 2, height / 2 - 10);
+    text("Range: " + selectedTower.range, width / 2, height / 2 + 10);
+    text("Attack Speed: " + (60.0 / selectedTower.fireRate) + " Bullets/sec", width / 2, height / 2 + 30);
+    fill(0, 150, 0);
+    rect(width / 2 - 50, height / 2 + 40, 100, 20);
+    fill(0);
+    textSize(20);
+    text("Press 'SPACE BAR' to Upgrade for " + selectedTower.getUpgradeCost(), width / 2, height / 2 + 50);
+  }
+}
+
+void mousePressed() {
+  if (placingTower) {
+    if (mouseY < height - 50 && playerMoney >= 50) {
+      towers.add(new Tower(mouseX, mouseY));
+      playerMoney -= 50;
+      placingTower = false;
+    }
+  } else if (mouseX > width - 150 && mouseY > height - 50) {
+    if (playerMoney >= 50){
+       placingTower = true;
+       tempTower = new Tower(mouseX, mouseY);
+    }
+
+  } else {
+    upgradingTower = false;
+    for (Tower t : towers) {
+      if (t.isClicked(mouseX, mouseY)) {
+        selectedTower = t;
+        upgradingTower = true;
+        return;
+      }
+    }
+  }
+}
+
+void keyPressed() {
+  if (key == 'w') wave++;
+  if (key == 'm') playerMoney += 1000;
+  if (key == 'r') {
+    spawnTimer = 0;
+    rabbits.add(new Rabbit(pathPoints, wave));
+  }
+  if (key == ' ' && upgradingTower && selectedTower != null) {
+    selectedTower.upgrade();
+    upgradingTower = false;
+  }
+  if (key == 'q' && placingTower) {
+    placingTower = false;
+  }
+}
+
+void gameOver() {
+  fill(0);
+  textSize(32);
+  textAlign(CENTER, CENTER);
+  text("Game Over!", width / 2, height / 2);
+  noLoop();
+}
