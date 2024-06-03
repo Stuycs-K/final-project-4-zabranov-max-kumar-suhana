@@ -1,5 +1,5 @@
 public class WaveManager {
-    private int currentWave;
+    /*private int currentWave;
     private float [][][] waveNum;
     private color col, C;
     private float x,y,targetX, targetY, w, h, cool, CDTime; 
@@ -73,5 +73,5 @@ public class WaveManager {
       cool = cool - 0.0166667;
     }
   }
-    
+    */
 }
