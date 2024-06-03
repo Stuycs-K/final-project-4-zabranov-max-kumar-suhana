@@ -1,12 +1,13 @@
 public class Tower {
-    int range, damage;
-    double fireRate;
-    int mouseX, mouseY;
-    int x, y;
-    
-  
-    
-    public Tower(int range, int damage, double fireRate, int x, int y){
+    PVector position;
+    float range;
+    int damage;
+    int fireRate;
+    int fireCooldown;
+    int level;
+    int upgradeCost;
+
+    Tower(int range, int damage, double fireRate, int x, int y){
       this.range = range;
       this.damage = damage;
       this.fireRate = fireRate;

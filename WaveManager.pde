@@ -1,25 +1,26 @@
 public class WaveManager {
     private int currentWave;
-    private double[][] waveNum;
-    ArrayList<Rabbit> enemyTypes = new ArrayList<Rabbit>();
+    private float [][][] waveNum;
+    private color col, C;
+    private float x,y,targetX, targetY, w, h, cool, CDTime; 
+    private boolean live;
+    //ArrayList<Rabbit> enemyTypes = new ArrayList<Rabbit>();
     
-    public WaveManager(){
-      
-      setX(width/100*72);
-      setY(width/64);
-      setW(width/13);
-      setH(width/32);
-      setColor(color(204, 104, 46));
-      setOriginalColor(getColor());
-      setCDTime(0.85);
-      setCooldown(1);
-      setLive(true);
+   public WaveManager(){
+      this.x = (width/100*72);
+      this.y = (width/64);
+      this.w = (width/13);
+      this.h = (width/32);
+      this.col = (color(204, 104, 46));
+      this.CDTime= 0.85;
+      this.cool = 1;
+      this.live = true;
       this.currentWave = 0;
-      this.waveNum = new double[21][int((Math.random * 40) + 20)] [2];
+      this.waveNum = new float[21][int(random(20,60))][2];
       for (int W = 1; W < waveNum.length; W++){
         for (int E = 0; E < waveNum[W].length; E++){
-          waveNum[W][E][0] = random(0.7-log(wave)/4,0.9);
-          waveNum[W][E][1] = int(random(floor(wave*0.7)+1, wave + 1));
+          waveNum[W][E][0] = random(0.7-log(W)/4,0.9);
+          waveNum[W][E][1] = int(random(floor(W*0.7)+1, W + 1));
         }
       }
     }
@@ -27,17 +28,17 @@ public class WaveManager {
      public void display(){
         noStroke();
         rectMode(CENTER);
-        fill(getColor());
-        rect(getX(), getY(), getW(), getH());
+        fill(col);
+        rect(x, y, w, h);
         textAlign(CENTER, CENTER);
         textSize(width/70);
         fill(#BD054E);
-        text("Start Wave", getX(), getY());
+        text("Start Wave", x, y);
         
-        if (currentWave == 0 && wave < waveData.length-1) {
-          setColor(getOriginalColor());
-          if (mouseX <= getX()+getW()/2 && mouseY <= getY()+getH()/2 && mouseX >= getX()-getW()/2 && mouseY >= getY()-getH()/2) {
-            setColor(color(red(getOriginalColor())*1.3, green(getOriginalColor())*1.3, blue(getOriginalColor())*1.3));
+        if (currentWave == 0 && W < waveNum.length-1) {
+          col = C;
+          if (mouseX <= x+w/2 && mouseY <= y+h/2 && mouseX >= x-w/2 && mouseY >= y-h/2) {
+            col = color(red(C)*1.3, green(C)*1.3, blue(C)*1.3);
             if (mousePressed) {
               money += wave*100;
               wave++;
@@ -49,7 +50,7 @@ public class WaveManager {
           }
         } 
         else{
-          setColor(color(red(getOriginalColor())*1, green(getOriginalColor())*1, blue(getOriginalColor())*1));
+          col = color(red(C)*1, green(C)*1, blue(C)*1);
         }
       
      
@@ -60,16 +61,16 @@ public class WaveManager {
     }
     
     public void updateWave(){
-    if (getCooldown() <= 0 && wave > 0) {
+    if (this.cool <= 0 && wave > 0) {
       if (currentWave > 0) {
-        setCDTime(waveNum[wave][waveNum[wave].length-currentWave][0]);
-        setCooldown(getCDTime());
+        CDTime = waveNum[wave][waveNum[wave].length-currentWave][0];
+        cool = CDTime;
         liveEntities.add(new Rabbit((int)waveNum[wave][waveNum[wave].length-currentWave][1]));
         currentWave -= 1;
       }
     }
     else {
-      setCooldown(getCooldown()-0.0166667); 
+      cool = cool - 0.0166667;
     }
   }
     
