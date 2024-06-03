@@ -12,7 +12,7 @@ class Tower {
     position = new PVector(x, y);
     range = 100;
     damage = 5;
-    fireRate = 60; // Frames between Bullets
+    fireRate = 60;
     fireCooldown = 0;
     level = 1;
     upgradeCost = 75;
@@ -44,7 +44,6 @@ class Tower {
       fill(150, 200, 300);
     }
     rect(position.x - 10, position.y - 10, 20, 20);
-    // Draw range circle
     noFill();
     stroke(0, 0, 255, 50);
     ellipse(position.x, position.y, range * 2, range * 2);
@@ -59,7 +58,7 @@ class Tower {
       level++;
       damage += 5;
       range += 20;
-      fireRate = max(10, fireRate - 10); // Decrease the fire rate to make it faster
+      fireRate = max(10, fireRate - 10);
       upgradeCost += 50;
     }
   }

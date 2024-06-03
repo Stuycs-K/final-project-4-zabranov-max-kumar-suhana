@@ -11,10 +11,10 @@ class Rabbit {
     this.pathPoints = pathPoints;
     currentPointIndex = 0;
     position = pathPoints.get(currentPointIndex).copy();
-    speed = 1 + (wave - 1) * 0.2; // Increase speed with each wave
+    speed = 1 + (wave - 1) * 0.2;
     maxHealth = wave * 10;
     health = maxHealth;
-    image = rabbitImage;// Assign the loaded image
+    image = rabbitImage;
   }
 
   void update() {
@@ -33,11 +33,11 @@ class Rabbit {
 
   void display() {
     imageMode(CENTER);
-    image(image, position.x, position.y, 40, 40); // Draw the rabbit image
+    image(image, position.x, position.y, 40, 40);
     fill(0);
     textSize(12);
     textAlign(CENTER, BOTTOM);
-    text(health + "/" + maxHealth, position.x, position.y - 30); // Display health above the rabbit
+    text(health + "/" + maxHealth, position.x, position.y - 30);
   }
 
   void takeDamage(int damage) {
