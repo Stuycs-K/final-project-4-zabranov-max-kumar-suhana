@@ -1,11 +1,13 @@
 public class Tower {
     PVector position;
-    float range;
-    int damage;
-    int fireRate;
-    int fireCooldown;
-    int level;
-    int upgradeCost;
+    private float range;
+    private int damage;
+    private int fireRate;
+    private int fireCooldown;
+    private int level;
+    private int upgradeCost;
+    private int count;
+
 
     Tower(float x, float y){
       positon = new Pvector(x,y);

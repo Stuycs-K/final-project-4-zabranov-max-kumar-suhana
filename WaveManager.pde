@@ -1,5 +1,6 @@
 public class WaveManager {
-    private int currentWave;
+    private int currentWave, money;
+    private int wave = 0;
     private float [][][] waveNum;
     private color col, C;
     private float x,y,targetX, targetY, w, h, cool, CDTime; 
@@ -35,7 +36,7 @@ public class WaveManager {
         fill(#BD054E);
         text("Start Wave", x, y);
         
-        if (currentWave == 0 && W < waveNum.length-1) {
+        if (currentWave == 0 && wave < waveNum.length-1) {
           col = C;
           if (mouseX <= x+w/2 && mouseY <= y+h/2 && mouseX >= x-w/2 && mouseY >= y-h/2) {
             col = color(red(C)*1.3, green(C)*1.3, blue(C)*1.3);
@@ -58,6 +59,10 @@ public class WaveManager {
     
     public void update(){
       updateWave();
+    }
+    
+    public int getMoney(){
+      return money;
     }
     
     public void updateWave(){
