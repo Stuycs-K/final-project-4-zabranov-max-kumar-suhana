@@ -35,7 +35,7 @@ class Rabbit {
     imageMode(CENTER);
     image(image, position.x, position.y, 40, 40);
     fill(0);
-    textSize(12);
+    textSize(10);
     textAlign(CENTER, BOTTOM);
     text(health + "/" + maxHealth, position.x, position.y - 30);
   }

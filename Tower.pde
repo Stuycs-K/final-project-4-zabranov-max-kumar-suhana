@@ -40,7 +40,7 @@ class Tower {
       fill(50, 100, 200);
     } else if (level == 2) {
       fill(100, 150, 250);
-    } else if (level >= 3) {
+    } else if (level >= 3 && level <=15) {
       fill(150, 200, 300);
     }
     rect(position.x - 10, position.y - 10, 20, 20);
