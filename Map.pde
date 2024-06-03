@@ -3,21 +3,21 @@ public class Map {
       int x;
       int y;
       boolean isPath = false;
-      Tower placed = null;
+      //Tower placed = null;
       
-      void place(Tower tower) {
-        if (canBuild()) {
-          placed = tower;
+      //void place(Tower tower) {
+        //if (canBuild()) {
+          //placed = tower;
           
-        }
-      }
+        //}
+      //}
       
-      boolean canBuild() {
-        if (placed == null && !isPath) return true;
-        else return false;
-      }
+      //boolean canBuild() {
+        //if (placed == null && !isPath) return true;
+        //else return false;
+      //}
       
-      void outline() {
+      /* void outline() {
         noFill();
         if (canBuild()) stroke(#000000);
         else stroke(#FF0000);
@@ -25,35 +25,11 @@ public class Map {
         
       }
     }
+    */
+}
     
-    class Point {
-      private float x;
-      private float y;
-      
-      public Point(float x, float y) {
-        this.x = x;
-        this.y = y;
-      }
-      
-      public Point() {
-        this(0, 0);
-      }
-      
-      public float getX() {
-        return x;
-      }
-      
-      public float getY() {
-        return y;
-      }
     }
     
-    class Path {
-      private Point[] points;
-      private arrayList<Point[]> track;
-      
-      ArrayList<Point[]> track = new ArrayList<Point[]>();
     
-      track.add(new Point());
 
       

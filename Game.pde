@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 static int _width = 1000;
 static int _height = (int) (_width * .8);
 static float playheight = _width * .65;
@@ -17,7 +18,10 @@ public void startGame() {}
   path = loadImage("path.png");
   image(grass, 0, 0, _width, _height);
   image(path, 0, 0, _width, _height);
-  mouseHover();
+  Path p = new Path();
+      p.display();
+      p.update();
+  //mouseHover();
   }
   public void setup() {
   size(_width, _height);
@@ -29,7 +33,7 @@ public void startGame() {}
     }
   }
   }
-  void mouseHover() {
+  /*void mouseHover() {
     int x = (int) (mouseX / cellSize);
     int y = (int) (mouseY/cellSize);
     if (y < Grid[0].length && x < Grid.length) {
@@ -38,3 +42,5 @@ public void startGame() {}
     rect(x * cellSize, y * cellSize, cellSize, cellSize);
     }
   }
+  */
+  
