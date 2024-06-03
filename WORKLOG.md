@@ -43,13 +43,10 @@ finished the path, added bullet class, and made general changes to classes for t
 ## Suhana Kumar
 
 ### 5/23
-
 implemented basic methods and variables for rabbit class, including subclasses, need to complete loop to test
 
 ### 5/ 24
-
 move, getter, setter methods
-
 
 ### 5/27
 worked on identifying pathway
@@ -62,3 +59,9 @@ buttons for tower class and draw/setup
 
 ### 5/30
 cleaning up mehthods in Rabbit and Tower class, once game setup complete, can set game active
+
+### 5/31
+developed game loop, add 'active' booleans to work with sprite classes
+
+### 6/2
+finished tower class, allowed for tower updates and increasing prices on tower, created demo buttons and cleaned up aesthetics of interface
