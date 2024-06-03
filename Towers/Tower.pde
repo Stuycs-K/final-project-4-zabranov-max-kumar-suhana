@@ -61,4 +61,9 @@ public class Tower {
     }
   }
   }
+  
+  boolean isClicked(float mx, float my) {
+    return mx > position.x - 10 && mx < position.x + 10 && my > position.y - 10 && my < position.y + 10;
+  }
+  
 }
