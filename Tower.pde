@@ -12,7 +12,7 @@ class Tower {
     position = new PVector(x, y);
     range = 100;
     damage = 5;
-    fireRate = 60; // Frames between shots
+    fireRate = 60; // Frames between Bullets
     fireCooldown = 0;
     level = 1;
     upgradeCost = 75;
@@ -24,7 +24,7 @@ class Tower {
       for (Rabbit r : rabbits) {
         if (PVector.dist(position, r.position) <= range) {
           fireCooldown = fireRate;
-          shots.add(new Shot(position.x, position.y, r, damage));
+          Bullets.add(new Bullet(position.x, position.y, r, damage));
           break;
         }
       }
