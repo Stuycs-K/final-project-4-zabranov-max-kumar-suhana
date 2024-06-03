@@ -2,6 +2,7 @@ ArrayList<Rabbit> rabbits;
 ArrayList<Tower> towers;
 ArrayList<Bullet> Bullets;
 int wave = 1;
+int radi = 1;
 int spawnInterval = 60;
 int spawnTimer = 0;
 int rabbitsTBulletoSpawn;
@@ -142,24 +143,38 @@ void draw() {
   }
 
   if (upgradingTower && selectedTower != null) {
-    fill(0, 0, 0, 150);
-    rect(width / 2 - 110, height / 2 - 50, 220, 100);
-    fill(255);
-    rect(width / 2 - 105, height / 2 - 45, 210, 90);
-    fill(0);
-    textAlign(CENTER, CENTER);
-    textSize(14);
-    text("Upgrade Tower", width / 2, height / 2 - 30);
-    textSize(12);
-    text("Damage: " + selectedTower.damage, width / 2, height / 2 - 10);
-    text("Range: " + selectedTower.range, width / 2, height / 2 + 10);
-    textSize(10);
-    text("Attack Speed: " + (60.0 / selectedTower.fireRate) + " Bullets/sec", width / 2, height / 2 + 30);
-    fill(0, 150, 0);
-    //rect(width/2 - 50, height / 2 + 40, 200, 20);
-    fill(0);
-    textSize(20);
-    text("Press 'SPACE BAR' to Upgrade for " + selectedTower.getUpgradeCost(), width / 2 - 10, height / 2 + 130);
+    if (radi < 5){
+      radi ++;
+      fill(0, 0, 0, 150);
+      rect(width / 2 - 110, height / 2 - 50, 220, 100);
+      fill(255);
+      rect(width / 2 - 105, height / 2 - 45, 210, 90);
+      fill(0);
+      textAlign(CENTER, CENTER);
+      textSize(14);
+      text("Upgrade Tower", width / 2, height / 2 - 30);
+      textSize(12);
+      text("Damage: " + selectedTower.damage, width / 2, height / 2 - 10);
+      text("Range: " + selectedTower.range, width / 2, height / 2 + 10);
+      textSize(10);
+      text("Attack Speed: " + (60.0 / selectedTower.fireRate) + " Bullets/sec", width / 2, height / 2 + 30);
+      fill(0, 150, 0);
+      //rect(width/2 - 50, height / 2 + 40, 200, 20);
+      fill(0);
+      textSize(20);
+      text("Press 'SPACE BAR' to Upgrade for " + selectedTower.getUpgradeCost(), width / 2 - 10, height / 2 + 130);
+    }
+    else{
+      fill(0, 0, 0, 150);
+      rect(width / 2 - 110, height / 2 - 50, 220, 100);
+      fill(255);
+      rect(width / 2 - 105, height / 2 - 45, 210, 90);
+      fill(0);
+      textAlign(CENTER, CENTER);
+      textSize(14);
+      text("out of upgrades", width/2, height/2 - 10);
+    }
+ 
   }
 }
 
