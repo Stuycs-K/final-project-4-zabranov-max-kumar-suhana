@@ -8,34 +8,33 @@ public class Tower {
     private int upgradeCost;
     private int count;
 
+  Tower(float x, float y) {
+    position = new PVector(x, y);
+    range = 100;
+    damage = 5;
+    fireRate = 60; // Frames between Bullets
+    fireCooldown = 0;
+    level = 1;
+    upgradeCost = 75;
+  }
 
-    Tower(float x, float y){
-      positon = new Pvector(x,y);
-      range = 100;
-      damage = 5;
-      fireRate = 60;
-      fireCooldown = 0;
-      level = 1;
-      upgradeCost = 75;
-    }
-    
-    void update(ArrayList<Rabbit> rabbits) {
+  void update(ArrayList<Rabbit> rabbits) {
     fireCooldown--;
     if (fireCooldown <= 0) {
       for (Rabbit r : rabbits) {
         if (PVector.dist(position, r.position) <= range) {
           fireCooldown = fireRate;
-          shots.add(new Shot(position.x, position.y, r, damage));
+          Bullets.add(new Bullet(position.x, position.y, r, damage));
           break;
         }
       }
     }
   }
-    
-  int getUpgradeCost(){
+  
+ int getUpgradeCost(){
     return upgradeCost;
   }
-    
+
   void display() {
     if (level == 1) {
       fill(50, 100, 200);
@@ -45,12 +44,14 @@ public class Tower {
       fill(150, 200, 300);
     }
     rect(position.x - 10, position.y - 10, 20, 20);
+    // Draw range circle
     noFill();
     stroke(0, 0, 255, 50);
     ellipse(position.x, position.y, range * 2, range * 2);
   }
-  
+
   void upgrade() {
+    
     if (playerMoney >= upgradeCost) {
       if (count < 5){
       count++;
@@ -63,9 +64,8 @@ public class Tower {
     }
   }
   }
-  
+
   boolean isClicked(float mx, float my) {
     return mx > position.x - 10 && mx < position.x + 10 && my > position.y - 10 && my < position.y + 10;
   }
-  
 }

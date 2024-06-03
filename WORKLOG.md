@@ -10,6 +10,35 @@ changed worklog and attempted branching
 
 worked on setup in the game class
 
+### 5/24
+
+started the map and grid of game class
+
+### 5/28
+
+started tiling tiles on the map
+
+### 5/29
+
+finished grid/tiles and added a little to tower
+
+### 5/28 
+
+created the rabbit sprite
+
+### 5/28
+
+added path class and worked on making the path, aligned the path
+
+### 5/31
+
+started on map class and worked more on path
+
+### 6/2
+
+finished the path, added bullet class, and made general changes to classes for the game to work
+
+### 5/30
 
 ## Suhana Kumar
 
