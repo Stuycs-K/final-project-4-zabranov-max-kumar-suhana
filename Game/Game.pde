@@ -42,7 +42,6 @@ void setup() {
 
 void draw() {
   background(#009900);
-  // Draw path
   stroke(#808080); // Brown color
   strokeWeight(40); // Wider path
   noFill();
@@ -55,7 +54,6 @@ void draw() {
   strokeWeight(4);
 
 
-  // Draw UI
   fill(color(189, 224,255));
   rect(0, height - 50, width, 50);
   fill(0);
@@ -74,7 +72,6 @@ void draw() {
       }
   text("Click to Place Tower", width - 130, height - 20);
 
-  // Spawn rabbits
   if (rabbitsSpawned < rabbitsToSpawn) {
     spawnTimer++;
     if (spawnTimer >= spawnInterval) {
@@ -84,7 +81,6 @@ void draw() {
     }
   }
 
-  // Update and draw rabbits
   for (int i = rabbits.size() - 1; i >= 0; i--) {
     Rabbit r = rabbits.get(i);
     r.update();
@@ -101,13 +97,11 @@ void draw() {
     }
   }
 
-  // Update and draw towers
   for (Tower t : towers) {
     t.update(rabbits);
     t.display();
   }
 
-  // Update and draw Bullets
   for (int i = Bullets.size() - 1; i >= 0; i--) {
     Bullet s = Bullets.get(i);
     s.update();
@@ -117,13 +111,11 @@ void draw() {
     }
   }
 
-  // Draw the temporary tower following the cursor
   if (placingTower) {
     tempTower.position.set(mouseX, mouseY);
     tempTower.display();
   }
 
-  // Check for wave completion
   if (wave > 15) {
       fill(0);
        textSize(32);
@@ -149,12 +141,11 @@ void draw() {
    
   }
 
-  // Display upgrade menu if a tower is selected for upgrading
   if (upgradingTower && selectedTower != null) {
     fill(0, 0, 0, 150);
-    rect(width / 2 - 75, height / 2 - 50, 150, 100);
+    rect(width / 2 - 110, height / 2 - 50, 220, 100);
     fill(255);
-    rect(width / 2 - 70, height / 2 - 45, 140, 90);
+    rect(width / 2 - 105, height / 2 - 45, 210, 90);
     fill(0);
     textAlign(CENTER, CENTER);
     textSize(14);
@@ -162,12 +153,13 @@ void draw() {
     textSize(12);
     text("Damage: " + selectedTower.damage, width / 2, height / 2 - 10);
     text("Range: " + selectedTower.range, width / 2, height / 2 + 10);
+    textSize(10);
     text("Attack Speed: " + (60.0 / selectedTower.fireRate) + " Bullets/sec", width / 2, height / 2 + 30);
     fill(0, 150, 0);
-    rect(width / 2 - 50, height / 2 + 40, 100, 20);
+    //rect(width/2 - 50, height / 2 + 40, 200, 20);
     fill(0);
     textSize(20);
-    text("Press 'SPACE BAR' to Upgrade for " + selectedTower.getUpgradeCost(), width / 2, height / 2 + 50);
+    text("Press 'SPACE BAR' to Upgrade for " + selectedTower.getUpgradeCost(), width / 2 - 10, height / 2 + 130);
   }
 }
 
