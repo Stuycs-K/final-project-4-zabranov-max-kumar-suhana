@@ -65,3 +65,9 @@ developed game loop, add 'active' booleans to work with sprite classes
 
 ### 6/2
 finished tower class, allowed for tower updates and increasing prices on tower, created demo buttons and cleaned up aesthetics of interface
+
+### 6/3
+set limit for tower upgrades
+
+### 6/5
+try to implement 'out of upgrade' message but not working correctly, need to add get and set methods
