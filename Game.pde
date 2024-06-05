@@ -2,7 +2,7 @@ ArrayList<Rabbit> rabbits;
 ArrayList<Tower> towers;
 ArrayList<Bullet> Bullets;
 int wave = 1;
-int radi = 1;
+int radi =1;
 int spawnInterval = 60;
 int spawnTimer = 0;
 int rabbitsTBulletoSpawn;
@@ -144,7 +144,6 @@ void draw() {
 
   if (upgradingTower && selectedTower != null) {
     if (radi < 5){
-      radi ++;
       fill(0, 0, 0, 150);
       rect(width / 2 - 110, height / 2 - 50, 220, 100);
       fill(255);
@@ -211,6 +210,7 @@ void keyPressed() {
     rabbits.add(new Rabbit(pathPoints, wave));
   }
   if (key == ' ' && upgradingTower && selectedTower != null) {
+    radi++;
     selectedTower.upgrade();
     upgradingTower = false;
   }
