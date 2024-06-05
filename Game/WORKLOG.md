@@ -38,6 +38,11 @@ started on map class and worked more on path
 
 finished the path, added bullet class, and made general changes to classes for the game to work
 
+### 6/3
+
+created fast rabbit class and implemented spawning of fast rabbits
+
+
 ### 5/30
 
 ## Suhana Kumar
