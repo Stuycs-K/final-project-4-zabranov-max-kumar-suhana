@@ -40,9 +40,11 @@ finished the path, added bullet class, and made general changes to classes for t
 
 ### 6/3
 
-created fast rabbit class and implemented spawning of fast rabbits
+created fast rabbit class and added spawning of fast rabbits in game
 
+### 6/4
 
+created tank rabbit class and added spawning of tank rabbits in game
 ### 5/30
 
 ## Suhana Kumar
