@@ -18,6 +18,7 @@ Tower selectedTower;
 ArrayList<PVector> pathPoints;
 PImage rabbitImage;
 PImage fastrabbitImage;
+PImage tankrabbitImage;
 
 void setup() {
   size(1000, 800);
@@ -29,6 +30,7 @@ void setup() {
   rabbitsToSpawn = 10; // Start with 10 rabbits in wave 1
   rabbitImage = loadImage("rabbitpic.png"); 
   fastrabbitImage = loadImage("fastrabbit.png");
+  tankrabbitImage = loadImage("rabbit.gif");
   pathPoints = new ArrayList<PVector>();
   pathPoints.add(startPoint);
   pathPoints.add(new PVector(width/1.29, width/100*17.5));
@@ -77,6 +79,7 @@ void draw() {
   if (rabbitsSpawned < rabbitsToSpawn) {
     int random = (int) (Math.random() * 11);
     spawnTimer++;
+    if (wave <= 3){
     if (spawnTimer >= spawnInterval) {
       if (random <= 7) {
         rabbits.add(new Rabbit(pathPoints, wave));
@@ -87,6 +90,26 @@ void draw() {
         rabbits.add(new FastRabbit(pathPoints, wave));
         rabbitsSpawned++;
         spawnTimer = 0;
+    }
+  }
+    }
+    else {
+    if (spawnTimer >= spawnInterval) {
+      if (random <= 4) {
+        rabbits.add(new Rabbit(pathPoints, wave));
+        rabbitsSpawned++;
+        spawnTimer = 0;
+      }
+      else if (random <= 8){
+        rabbits.add(new FastRabbit(pathPoints, wave));
+        rabbitsSpawned++;
+        spawnTimer = 0;
+    }
+      else {
+        rabbits.add(new TankRabbit(pathPoints, wave));
+        rabbitsSpawned++;
+        spawnTimer = 0;
+  }
     }
   }
   }
