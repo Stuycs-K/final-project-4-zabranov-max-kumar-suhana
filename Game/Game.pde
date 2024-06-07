@@ -19,6 +19,7 @@ ArrayList<PVector> pathPoints;
 PImage rabbitImage;
 PImage fastrabbitImage;
 PImage tankrabbitImage;
+PImage towerImage;
 
 void setup() {
   size(1000, 800);
@@ -31,6 +32,7 @@ void setup() {
   rabbitImage = loadImage("rabbitpic.png"); 
   fastrabbitImage = loadImage("fastrabbit.png");
   tankrabbitImage = loadImage("tankrabbit.png");
+  towerImage = loadImage("tower.png");
   pathPoints = new ArrayList<PVector>();
   pathPoints.add(startPoint);
   pathPoints.add(new PVector(width/1.29, width/100*17.5));
