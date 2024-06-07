@@ -6,7 +6,7 @@ public class Tower {
     private int fireCooldown;
     private int level;
     private int upgradeCost;
-    private int count;
+    private int upCount;
 
   Tower(float x, float y) {
     position = new PVector(x, y);
@@ -62,6 +62,10 @@ public class Tower {
       upgradeCost += 50;
     }
   }
+  }
+  
+  int upCount(){
+    return upCount;
   }
 
   boolean isClicked(float mx, float my) {
