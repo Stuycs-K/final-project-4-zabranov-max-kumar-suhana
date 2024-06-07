@@ -7,6 +7,8 @@ public class Tower {
     private int level;
     private int upgradeCost;
     private int count;
+    PImage image;
+    boolean flipImage;
 
   Tower(float x, float y) {
     position = new PVector(x, y);
@@ -16,6 +18,8 @@ public class Tower {
     fireCooldown = 0;
     level = 1;
     upgradeCost = 75;
+    image = towerImage;
+    flipImage = false;
   }
 
   void update(ArrayList<Rabbit> rabbits) {
@@ -25,6 +29,7 @@ public class Tower {
         if (PVector.dist(position, r.position) <= range) {
           fireCooldown = fireRate;
           Bullets.add(new Bullet(position.x, position.y, r, damage));
+          flipImage = (r.position.x < position.x);
           break;
         }
       }
@@ -36,6 +41,14 @@ public class Tower {
   }
 
   void display() {
+    imageMode(CENTER);
+    pushMatrix();
+    translate(position.x, position.y);
+    if (flipImage) {
+      scale(-1, 1);
+    }
+    image(image, 0, 0, 60, 40);
+    popMatrix();
     if (level == 1) {
       fill(50, 100, 200);
     } else if (level == 2) {
@@ -43,14 +56,12 @@ public class Tower {
     } else if (level >= 3 && level <=15) {
       fill(150, 200, 300);
     }
-    rect(position.x - 10, position.y - 10, 20, 20);
     noFill();
     stroke(0, 0, 255, 50);
     ellipse(position.x, position.y, range * 2, range * 2);
   }
 
   void upgrade() {
-    
     if (playerMoney >= upgradeCost) {
       if (count < 5){
       count++;
