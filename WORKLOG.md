@@ -71,3 +71,6 @@ set limit for tower upgrades
 
 ### 6/5
 try to implement 'out of upgrade' message but not working correctly, need to add get and set methods
+
+### 6/7
+fixed upgrade message, sets limits for each tower, began slowTower
