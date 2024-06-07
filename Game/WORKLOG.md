@@ -45,6 +45,14 @@ created fast rabbit class and added spawning of fast rabbits in game
 ### 6/4
 
 created tank rabbit class and added spawning of tank rabbits in game
+
+### 6/5
+
+Added tank rabbit sprite and spawning of tank rabbits
+
+### 6/6
+
+Fixed tank rabbit and fast rabbit so towers can shoot at them. Added a tower sprite.
 ### 5/30
 
 ## Suhana Kumar
