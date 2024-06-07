@@ -121,7 +121,7 @@ void draw() {
     r.update();
     r.display();
     if (r.isDead()) {
-      playerMoney += rabbits.get(i).getMaxHealth(); // Gain money for killing a rabbit
+      playerMoney += ((1100/(-(rabbits.get(i).getMaxHealth()) - 62)) + 20); // Gain money for killing a rabbit
       rabbits.remove(i);
     } else if (r.reachedEnd()) {
       playerHealth -= 10; // Lose health if rabbit reaches the end
@@ -161,7 +161,7 @@ void draw() {
   if (rabbits.size() == 0 && rabbitsSpawned >= rabbitsToSpawn) {
     if (wave < 15){
     wave++;
-    playerMoney += 50 * wave;
+    playerMoney += (100/(-wave - 12) + 20);
     rabbitsToSpawn = 10 + wave * 2; // Scale rabbits count with wave number
     rabbitsSpawned = 0;
     println("Wave " + wave);
