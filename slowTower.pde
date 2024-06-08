@@ -1,20 +1,39 @@
 class slowTower extends Tower{
-  Tower(float x, float y){
-    super;
+  float slowDuration;
+  float slowAmount;
+  
+  slowTower(float x, float y, float slowAmount){
+    super(x, y);
+    this.slowDuration = 3.0;
+    this.slowAmount = slowAmount;
   }
-  
-  
-  void update(ArrayList<Rabbit> rabbits) {
+
+    void update(ArrayList<Rabbit> rabbits) {
     fireCooldown--;
     if (fireCooldown <= 0) {
       for (Rabbit r : rabbits) {
         if (PVector.dist(position, r.position) <= range) {
+          r.applySlow
           fireCooldown = fireRate;
-          Bullets.add(new Bullet(position.x, position.y, r, damage, 2));
+          Bullets.add(new Bullet(position.x, position.y, r, damage));
           break;
         }
       }
     }
+  }
+  
+  void upgrade() {
+    if (playerMoney >= upgradeCost) {
+      if (count < 5){
+      count++;
+      playerMoney -= upgradeCost;
+      level++;
+      if (slowDuration < 10.0){
+        slowDuration++;
+      }
+      upgradeCost += 50;
+    }
+  }
   }
   
     void display() {

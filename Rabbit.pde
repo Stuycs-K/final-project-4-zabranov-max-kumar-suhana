@@ -2,7 +2,7 @@ class Rabbit {
   ArrayList<PVector> pathPoints;
   int currentPointIndex;
   PVector position;
-  float speed;
+  float speed, slowTimer;
   int health;
   int maxHealth;
   PImage image;
@@ -29,6 +29,11 @@ class Rabbit {
         position.add(direction);
       }
     }
+  }
+  
+  void applySlow(float slowAmount, float duration){
+    speed = speed * (1 - slowAmount);
+    slowTimer = duration;
   }
 
   void display() {
