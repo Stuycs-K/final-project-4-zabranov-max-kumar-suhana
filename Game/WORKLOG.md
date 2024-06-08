@@ -53,6 +53,11 @@ Added tank rabbit sprite and spawning of tank rabbits
 ### 6/6
 
 Fixed tank rabbit and fast rabbit so towers can shoot at them. Added a tower sprite.
+
+### 6/7
+
+Converted health and money gain to asymptote equation.
+
 ### 5/30
 
 ## Suhana Kumar
