@@ -80,20 +80,23 @@ void draw() {
       mouseY >= 560 && mouseY <= 590) {
         fill(color(1,147,189));
       }
-  mono = createFont("RaceSport.ttf", 12);
+  mono = createFont("RaceSport.ttf", 20);
+  textFont(mono);
+  text("MENU:", 985, 210);
+  mono = createFont("RaceSport.ttf", 10);
   textFont(mono);
   fill(255);
-  rect(815, 250, 340, 90);
+  rect(818, 250, 340, 90);
   fill(0);
-  text("Click to Place Tower", 940, 300);
+  text("Click to Place Tower,  Cost: 75", 940, 300);
   fill(255);
-  rect(815, 350, 340, 90);
+  rect(818, 350, 340, 90);
   fill(0);
-  text("Click to Place Slow Tower", 960, 400);
+  text("Click to Place Slow Tower,   Cost: 75", 960, 400);
   fill(255);
-  rect(815, 450, 340, 90);
+  rect(818, 450, 340, 90);
   fill(0);
-  text("Click to Place Multi Tower", 960, 500);
+  text("Click to Place Multi Tower,   Cost: 100", 9 , 500);
 
   if (rabbitsSpawned < rabbitsToSpawn) {
     spawnTimer++;
