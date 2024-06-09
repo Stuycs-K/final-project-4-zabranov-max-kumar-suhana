@@ -9,6 +9,7 @@ class Tower {
   int upCount;
   int count;
 
+
   Tower(float x, float y) {
     position = new PVector(x, y);
     range = 100;

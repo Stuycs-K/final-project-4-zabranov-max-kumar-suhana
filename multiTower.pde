@@ -3,7 +3,7 @@ class multiTower extends Tower{
   
   multiTower(float x, float y){
     super(x, y);
-    maxTargets = 2;
+    this.maxTargets = 2;
   }
   
    void update(ArrayList<Rabbit> rabbits) {
