@@ -20,9 +20,9 @@ ArrayList<PVector> pathPoints;
 PImage rabbitImage;
 
 void setup() {
-  size(1000, 800);
-  startPoint = new PVector(-1, width/100*17.5);
-  endPoint = new PVector(width/8, width/100*79.5);
+  size(1180, 800);
+  startPoint = new PVector(-1, (width - 180)/100*17.5);
+  endPoint = new PVector((width - 180)/8, (width - 180)/100*79.5);
   rabbits = new ArrayList<Rabbit>();
   towers = new ArrayList<Tower>();
   Bullets = new ArrayList<Bullet>();
@@ -30,13 +30,13 @@ void setup() {
   rabbitImage = loadImage("rabbitpic.png"); 
   pathPoints = new ArrayList<PVector>();
   pathPoints.add(startPoint);
-  pathPoints.add(new PVector(width/1.29, width/100*17.5));
-  pathPoints.add(new PVector(width/1.29, width/100*32.5));
-  pathPoints.add(new PVector(width/4.425, width/100*32.5));
-  pathPoints.add(new PVector(width/4.425, width/100*47.5));
-  pathPoints.add(new PVector(width/1.289, width/100*47.5));
-  pathPoints.add(new PVector(width/1.289, width/100*67.5));
-  pathPoints.add(new PVector(width/8, width/100*67.5));
+  pathPoints.add(new PVector((width - 180)/1.29, (width - 180) /100*17.5));
+  pathPoints.add(new PVector((width - 180)/1.29, (width - 180)/100*32.5));
+  pathPoints.add(new PVector((width - 180)/4.425, (width - 180)/100*32.5));
+  pathPoints.add(new PVector((width - 180)/4.425, (width - 180)/100*47.5));
+  pathPoints.add(new PVector((width - 180)/1.289, (width - 180)/100*47.5));
+  pathPoints.add(new PVector((width - 180)/1.289, (width - 180)/100*67.5));
+  pathPoints.add(new PVector((width - 180)/8, (width - 180)/100*67.5));
   pathPoints.add(endPoint);
 
 }
@@ -55,13 +55,13 @@ void draw() {
   strokeWeight(4);
 
 
-  fill(color(189, 224,255));
-  rect(0, height - 50, width, 50);
+  fill(color(144, 224,255));
+  rect(808, 20, 360, 760);
   fill(0);
   PFont mono;
   mono = createFont("RaceSport.ttf", 10);
   textFont(mono);
-  text("Health: " + playerHealth, 50, height - 20);
+  text("Health: " + playerHealth, 815, 30);
   text("Money: " + playerMoney, 140, height - 20);
   text("Wave: " + wave, 220, height - 20);
   fill(255);

@@ -1,8 +1,8 @@
 class multiTower extends Tower{
-  int maxTargets:
+  int maxTargets;
   
-  Multitower(float x, float y){
-    super(x,y);
+  multiTower(float x, float y){
+    super(x, y);
     maxTargets = 2;
   }
   
@@ -30,13 +30,30 @@ class multiTower extends Tower{
       playerMoney -= upgradeCost;
       level++;
       fireRate = max(10, fireRate-10);
-      if (maxTaregts < 10.0){
+      if (maxTargets < 10.0){
         maxTargets++;
       }
       upgradeCost += 50;
     }
   }
   }
+  
+    void display() {
+    if (level == 1) {
+      fill(50, 100, 200);
+    } else if (level == 2) {
+      fill(100, 150, 250);
+    } else if (level >= 3 && level <=15) {
+      fill(150, 200, 300);
+    }
+    rect(position.x - 10, position.y - 10, 20, 20);
+    noFill();
+    stroke(0, 0, 255, 50);
+    ellipse(position.x, position.y, range * 2, range * 2);
+  }
+  
+  
+  
 
 
 }
