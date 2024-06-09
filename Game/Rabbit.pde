@@ -11,8 +11,8 @@ class Rabbit {
     this.pathPoints = pathPoints;
     currentPointIndex = 0;
     position = pathPoints.get(currentPointIndex).copy();
-    speed = 1 + (wave - 1) * 0.2;
-    maxHealth = wave * 10;
+    speed = 1 + (wave - 1) * 0.2 * speedmult;
+    maxHealth = wave * 10 * healthmult;
     health = maxHealth;
     image = rabbitImage;
   }
@@ -34,7 +34,7 @@ class Rabbit {
   void display() {
     imageMode(CENTER);
     image(image, position.x, position.y, 40, 40);
-    fill(0);
+    fill(textcolor);
     textSize(10);
     textAlign(CENTER, BOTTOM);
     text(health + "/" + maxHealth, position.x, position.y - 30);

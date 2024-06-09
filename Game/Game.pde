@@ -20,6 +20,7 @@ ArrayList<PVector> pathPoints;
 PImage rabbitImage;
 PImage fastrabbitImage;
 PImage tankrabbitImage;
+PImage bossrabbitImage;
 PImage towerImage;
 PImage currentbg;
 PImage menu;
@@ -48,6 +49,7 @@ void setup() {
   rabbitImage = loadImage("rabbitpic.png"); 
   fastrabbitImage = loadImage("fastrabbit.png");
   tankrabbitImage = loadImage("tankrabbit.png");
+  bossrabbitImage = loadImage("Lepus.png");
   towerImage = loadImage("tower.png");
   pathPoints = new ArrayList<PVector>();
 }
@@ -55,7 +57,7 @@ void setup() {
 void draw() {
   if (!gameStarted) {
     background(menu);
-    fill(0);
+    fill(#8C8C8C);
     textSize(50);
     textAlign(CENTER, CENTER);
     text("Map Select", width / 2, 50);
@@ -64,15 +66,22 @@ void draw() {
     rect(width / 2 - 200, 150, 400, 100);
     fill(#5E88FF);
     rect(width / 2 - 200, 300, 400, 100);
-    fill(#49DD1E);
+    fill(#C41C23);
     rect(width / 2 - 200, 450, 400, 100);
     
     fill(#1C4B1F);
     text("Grassy Meadows", width / 2, 200);
     fill(#F5F115);
     text("Sandy Shores", width / 2, 350);
-    fill(#1C4B1F);
-    text("Place holder", width / 2, 500);
+    fill(#000000);
+    text("Lava Lake", width / 2, 500);
+    
+    fill(#14FF00);
+    text("EASY", 800, 200);
+    fill(#FFFE01);
+    text("MEDIUM", 800, 350);
+    fill(#FF0101);
+    text("HARD", 800, 500);
   }
   else {
   background(currentbg);
@@ -110,7 +119,12 @@ void draw() {
   if (rabbitsSpawned < rabbitsToSpawn) {
     int random = (int) (Math.random() * 11);
     spawnTimer++;
-    if (wave >= (-speedmult + 7) && wave < (-speedmult + 9)){
+    if (rabbitsSpawned == rabbitsToSpawn - 1 && wave == maxwave) {
+      rabbits.add(new BossRabbit(pathPoints, wave));
+      rabbitsSpawned++;
+      spawnTimer = 0;
+    }
+    else if (wave >= (-speedmult + 7) && wave < (-speedmult + 9)){
     if (spawnTimer >= spawnInterval) {
       if (random <= 7) {
         rabbits.add(new Rabbit(pathPoints, wave));
@@ -124,7 +138,7 @@ void draw() {
     }
   }
     }
-    if (wave >= (-speedmult + 9)) {
+    else if (wave >= (-speedmult + 9)) {
     if (spawnTimer >= spawnInterval) {
       if (random <= 3) {
         rabbits.add(new Rabbit(pathPoints, wave));
