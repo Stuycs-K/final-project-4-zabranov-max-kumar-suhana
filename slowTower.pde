@@ -1,43 +1,43 @@
-class Tower {
-  PVector position;
-  float range;
-  int damage;
-  int fireRate;
-  int fireCooldown;
-  int level;
-  int upgradeCost;
-  int upCount;
-  int count;
-
-
-  Tower(float x, float y) {
-    position = new PVector(x, y);
-    range = 100;
-    damage = 5;
-    fireRate = 60;
-    fireCooldown = 0;
-    level = 1;
-    upgradeCost = 75;
+class slowTower extends Tower{
+  float slowDuration;
+  float slowAmount;
+  
+  slowTower(float x, float y){
+    super(x, y);
+    this.slowDuration = 3.0;
+    this.slowAmount = 0.5;
   }
 
-  void update(ArrayList<Rabbit> rabbits) {
+    void update(ArrayList<Rabbit> rabbits) {
     fireCooldown--;
     if (fireCooldown <= 0) {
       for (Rabbit r : rabbits) {
         if (PVector.dist(position, r.position) <= range) {
           fireCooldown = fireRate;
           Bullets.add(new Bullet(position.x, position.y, r, damage));
+          r.applySlow(slowAmount, slowDuration);
           break;
         }
       }
     }
   }
   
- int getUpgradeCost(){
-    return upgradeCost;
+  void upgrade() {
+    if (playerMoney >= upgradeCost) {
+      if (count < 5){
+      count++;
+      playerMoney -= upgradeCost;
+      level++;
+      fireRate = max(10, fireRate-10);
+      if (slowDuration < 10.0){
+        slowDuration++;
+      }
+      upgradeCost += 50;
+    }
   }
-
-  void display() {
+  }
+  
+    void display() {
     if (level == 1) {
       fill(50, 100, 200);
     } else if (level == 2) {
@@ -50,20 +50,9 @@ class Tower {
     stroke(0, 0, 255, 50);
     ellipse(position.x, position.y, range * 2, range * 2);
   }
-
-  void upgrade() {
-    
-    if (playerMoney >= upgradeCost) {
-      if (count < 5){
-      count++;
-      playerMoney -= upgradeCost;
-      level++;
-      damage += 5;
-      range += 20;
-      fireRate = max(10, fireRate - 10);
-      upgradeCost += 50;
-    }
-  }
+  
+  int getUpgradeCost(){
+    return upgradeCost;
   }
   
   int upCount(){

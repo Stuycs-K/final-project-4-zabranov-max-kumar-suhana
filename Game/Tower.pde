@@ -1,14 +1,12 @@
-class Tower {
-  PVector position;
-  float range;
-  int damage;
-  int fireRate;
-  int fireCooldown;
-  int level;
-  int upgradeCost;
-  int upCount;
-  int count;
-
+public class Tower {
+    PVector position;
+    private float range;
+    private int damage;
+    private int fireRate;
+    private int fireCooldown;
+    private int level;
+    private int upgradeCost;
+    private int upCount;
 
   Tower(float x, float y) {
     position = new PVector(x, y);
@@ -68,10 +66,6 @@ class Tower {
   
   int upCount(){
     return upCount;
-  }
-  
-  void setUpCount(){
-    upCount++;
   }
 
   boolean isClicked(float mx, float my) {
