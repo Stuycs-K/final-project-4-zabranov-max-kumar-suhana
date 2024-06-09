@@ -436,15 +436,11 @@ void mousePressed() {
   }
   }
   if ((mouseX > 828 && mouseX < 978) && (mouseY > 700 && mouseY < 750)){
-    setUp();
-  //text("Restart", 905 , 730);
-  //fill(255);
-  //rect(1000, 700, 150, 50);
-  //fill(0);
-  //textSize(14);
-  //text("Maps", 1070 , 730)
-  //}
+    setup();
 }
+//  if ((mouseX > 1000 && mouseX < 1150) && (mouseY > 700 && mouseY < 750)){
+////map
+//}
 }
 
 void keyPressed() {
