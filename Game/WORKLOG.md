@@ -58,6 +58,10 @@ Fixed tank rabbit and fast rabbit so towers can shoot at them. Added a tower spr
 
 Converted health and money gain to asymptote equation.
 
+### 6/8
+
+Added new maps, difficulties, boss rabbit, fixed bullet bug, and made it so you can't place towers on path
+
 ### 5/30
 
 ## Suhana Kumar
