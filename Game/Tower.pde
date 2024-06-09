@@ -28,7 +28,7 @@ public class Tower {
       for (Rabbit r : rabbits) {
         if (PVector.dist(position, r.position) <= range) {
           fireCooldown = fireRate;
-          Bullets.add(new Bullet(position.x, position.y, r, damage));
+          Bullets.add(new Bullet(position.x, position.y, r, damage, range));
           flipImage = (r.position.x < position.x);
           break;
         }
