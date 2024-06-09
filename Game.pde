@@ -109,6 +109,17 @@ void draw() {
   rect(818, 450, 340, 90);
   fill(0);
   text("Click to Place Multi Tower,   Cost: 100", 960 , 500);
+  fill(255);
+  rect(828, 700, 150, 50);
+  fill(0);
+  textSize(14);
+  text("Restart", 905 , 730);
+  fill(255);
+  rect(1000, 700, 150, 50);
+  fill(0);
+  textSize(14);
+  text("Maps", 1090 , 730);
+
 
   if (rabbitsSpawned < rabbitsToSpawn) {
     spawnTimer++;
@@ -279,7 +290,7 @@ if (upgradingMTower && selectedMTower != null) {
       text("Upgrade Tower", width / 2, height / 2 - 30);
       textSize(12);
       text("Damage: 5 ", width / 2, height / 2 - 10);
-      text("Range: 100 ", width / 2, height / 2 + 10);
+      text("Range: 2003 ", width / 2, height / 2 + 10);
       textSize(10);
       text("Attack Amount: " + selectedMTower.maxTargets + " Rabbits", width / 2, height / 2 + 30);
       fill(0, 150, 0);
@@ -300,6 +311,7 @@ if (upgradingMTower && selectedMTower != null) {
     }
  
   }
+
 }
 
 void mousePressed() {

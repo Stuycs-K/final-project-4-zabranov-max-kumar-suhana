@@ -1,8 +1,10 @@
 class multiTower extends Tower{
+  int range;
   int maxTargets;
   
   multiTower(float x, float y){
     super(x, y);
+    this.range = 200;
     this.maxTargets = 2;
   }
   
