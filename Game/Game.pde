@@ -13,6 +13,7 @@ PVector startPoint;
 PVector endPoint;
 boolean placingTower = false;
 boolean upgradingTower = false;
+boolean gameStarted = false;
 Tower tempTower;
 Tower selectedTower;
 ArrayList<PVector> pathPoints;
@@ -20,9 +21,19 @@ PImage rabbitImage;
 PImage fastrabbitImage;
 PImage tankrabbitImage;
 PImage towerImage;
+PImage currentbg;
+PImage menu;
+PImage map1;
+PImage map2;
+PImage map3;
+color pathcolor;
+
 
 void setup() {
   size(1000, 800);
+  menu = loadImage("summer.png");
+  map1 = loadImage("grass.jpg");
+  map2 = loadImage("sand.jpg");
   startPoint = new PVector(-1, width/100*17.5);
   endPoint = new PVector(width/8, width/100*79.5);
   rabbits = new ArrayList<Rabbit>();
@@ -34,22 +45,34 @@ void setup() {
   tankrabbitImage = loadImage("tankrabbit.png");
   towerImage = loadImage("tower.png");
   pathPoints = new ArrayList<PVector>();
-  pathPoints.add(startPoint);
-  pathPoints.add(new PVector(width/1.29, width/100*17.5));
-  pathPoints.add(new PVector(width/1.29, width/100*32.5));
-  pathPoints.add(new PVector(width/4.425, width/100*32.5));
-  pathPoints.add(new PVector(width/4.425, width/100*47.5));
-  pathPoints.add(new PVector(width/1.289, width/100*47.5));
-  pathPoints.add(new PVector(width/1.289, width/100*67.5));
-  pathPoints.add(new PVector(width/8, width/100*67.5));
-  pathPoints.add(endPoint);
-
 }
 
 void draw() {
-  background(#009900);
-  stroke(#808080); // Brown color
-  strokeWeight(40); // Wider path
+  if (!gameStarted) {
+    background(menu);
+    fill(0);
+    textSize(50);
+    textAlign(CENTER, CENTER);
+    text("Map Select", width / 2, 50);
+    
+    fill(#49DD1E);
+    rect(width / 2 - 200, 150, 400, 100);
+    fill(#5E88FF);
+    rect(width / 2 - 200, 300, 400, 100);
+    fill(#49DD1E);
+    rect(width / 2 - 200, 450, 400, 100);
+    
+    fill(#1C4B1F);
+    text("Grassy Meadows", width / 2, 200);
+    fill(#F5F115);
+    text("Sandy Shores", width / 2, 350);
+    fill(#1C4B1F);
+    text("Place holder", width / 2, 500);
+  }
+  else {
+  background(currentbg);
+  stroke(pathcolor); 
+  strokeWeight(40); 
   noFill();
   beginShape();
   for (PVector point : pathPoints) {
@@ -58,6 +81,7 @@ void draw() {
   endShape();
   noStroke();
   strokeWeight(4);
+
 
 
   fill(color(189, 224,255));
@@ -197,8 +221,20 @@ void draw() {
     text("Press 'SPACE BAR' to Upgrade for " + selectedTower.getUpgradeCost(), width / 2 - 10, height / 2 + 130);
   }
 }
+}
 
 void mousePressed() {
+  if (!gameStarted) {
+    if (mouseX > width / 2 - 200 && mouseX < width / 2 + 200) {
+      if (mouseY > 150 && mouseY < 250) {
+        selectMap(1);
+      } else if (mouseY > 300 && mouseY < 400) {
+        selectMap(2);
+      } else if (mouseY > 450 && mouseY < 550) {
+        selectMap(3);
+      }
+    }
+  } else {
   if (placingTower) {
     if (mouseY < height - 50 && playerMoney >= 50) {
       towers.add(new Tower(mouseX, mouseY));
@@ -221,6 +257,7 @@ void mousePressed() {
       }
     }
   }
+}
 }
 
 void keyPressed() {
@@ -245,4 +282,42 @@ void gameOver() {
   textAlign(CENTER, CENTER);
   text("Game Over!", width / 2, height / 2);
   noLoop();
+}
+
+void selectMap(int map) {
+  pathPoints.clear();
+
+  if (map == 1) {
+  currentbg = map1;
+  pathPoints.add(startPoint);
+  pathPoints.add(new PVector(width/1.29, width/100*17.5));
+  pathPoints.add(new PVector(width/1.29, width/100*32.5));
+  pathPoints.add(new PVector(width/4.425, width/100*32.5));
+  pathPoints.add(new PVector(width/4.425, width/100*47.5));
+  pathPoints.add(new PVector(width/1.289, width/100*47.5));
+  pathPoints.add(new PVector(width/1.289, width/100*67.5));
+  pathPoints.add(new PVector(width/8, width/100*67.5));
+  pathPoints.add(endPoint);
+  pathcolor = #5C5C5F;
+  } else if (map == 2) {
+    currentbg = map2;
+    startPoint = new PVector(-1, width/20);
+    endPoint = new PVector(800, 0);
+    pathPoints.add(startPoint);
+    pathPoints.add(new PVector(100, 50));
+    pathPoints.add(new PVector(300, 250));
+    pathPoints.add(new PVector(100, 250));
+    pathPoints.add(new PVector(300, 450));
+    pathPoints.add(new PVector(800, 450));
+    pathPoints.add(new PVector(600, 250));
+    pathPoints.add(new PVector(800, 250));
+    pathPoints.add(endPoint);
+    pathcolor = #39A9FF;
+  } else if (map == 3) {
+    pathPoints.add(new PVector(100, 100));
+    pathPoints.add(new PVector(200, 200));
+    pathPoints.add(new PVector(100, 300));
+    pathPoints.add(new PVector(200, 400));
+  }
+  gameStarted = true;
 }
