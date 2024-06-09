@@ -118,7 +118,7 @@ void draw() {
   rect(1000, 700, 150, 50);
   fill(0);
   textSize(14);
-  text("Maps", 1090 , 730);
+  text("Maps", 1070 , 730);
 
 
   if (rabbitsSpawned < rabbitsToSpawn) {
@@ -279,7 +279,7 @@ if (upgradingSTower && selectedSTower != null) {
   }
 
 if (upgradingMTower && selectedMTower != null) {
-    if (selectedMTower.upCount() < 5){
+    if (selectedMTower.upCount() < 3){
       fill(0, 0, 0, 150);
       rect(width / 2 - 110, height / 2 - 50, 220, 100);
       fill(255);
@@ -290,7 +290,7 @@ if (upgradingMTower && selectedMTower != null) {
       text("Upgrade Tower", width / 2, height / 2 - 30);
       textSize(12);
       text("Damage: 5 ", width / 2, height / 2 - 10);
-      text("Range: 2003 ", width / 2, height / 2 + 10);
+      text("Range: 200 ", width / 2, height / 2 + 10);
       textSize(10);
       text("Attack Amount: " + selectedMTower.maxTargets + " Rabbits", width / 2, height / 2 + 30);
       fill(0, 150, 0);
@@ -315,11 +315,18 @@ if (upgradingMTower && selectedMTower != null) {
 }
 
 void mousePressed() {
+  int countN = 1;
   if (placingTower) {
     if (playerMoney >= 50) {
       if (mouseX < 800){
         towers.add(new Tower(mouseX, mouseY));
-        playerMoney -= 50;
+        if (countN == 1){
+          playerMoney -= 75;
+          countN++;
+        }
+        else{
+          playerMoney -= 50;
+        }
         placingTower = false;
       }
       else{
@@ -349,10 +356,17 @@ void mousePressed() {
   }
   
   if (placingSTower) {
+    int countS =1;
     if (playerMoney >= 50) {
       if (mouseX < 800){
         sTowers.add(new slowTower(mouseX, mouseY));
-        playerMoney -= 50;
+        if (countS == 1){
+          playerMoney -= 75;
+          countS++;
+        }
+        else{
+          playerMoney -= 50;
+        }
         placingSTower = false;
       }
       else{
@@ -383,10 +397,17 @@ void mousePressed() {
   
   
   if (placingMTower) {
+    int countM= 1;
     if (playerMoney >= 50) {
       if (mouseX < 800){
         mTowers.add(new multiTower(mouseX, mouseY));
-        playerMoney -= 50;
+        if (countM == 1){
+          playerMoney -= 100;
+          countM++;
+        }
+        else{
+          playerMoney -= 50;
+        }
         placingMTower = false;
       }
       else{
@@ -414,8 +435,17 @@ void mousePressed() {
     }
   }
   }
+  if ((mouseX > 828 && mouseX < 978) && (mouseY > 700 && mouseY < 750)){
+    setUp();
+  //text("Restart", 905 , 730);
+  //fill(255);
+  //rect(1000, 700, 150, 50);
+  //fill(0);
+  //textSize(14);
+  //text("Maps", 1070 , 730)
+  //}
 }
-
+}
 
 void keyPressed() {
   if (key == 'w') wave++;
@@ -447,6 +477,7 @@ void keyPressed() {
     placingMTower = false;
   }
 }
+
 
 void gameOver() {
   fill(0);
