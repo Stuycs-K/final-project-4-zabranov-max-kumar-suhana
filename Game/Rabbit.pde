@@ -2,7 +2,7 @@ class Rabbit {
   ArrayList<PVector> pathPoints;
   int currentPointIndex;
   PVector position;
-  float speed;
+  float speed, slowTimer, ogspeed;
   int health;
   int maxHealth;
   PImage image;
@@ -12,12 +12,20 @@ class Rabbit {
     currentPointIndex = 0;
     position = pathPoints.get(currentPointIndex).copy();
     speed = 1 + (wave - 1) * 0.2;
+    ogspeed = speed;
     maxHealth = wave * 10;
     health = maxHealth;
     image = rabbitImage;
+    slowTimer = 0;
   }
 
   void update() {
+    if (slowTimer > 0){
+      slowTimer -= 1.0 / frameRate;
+      if (slowTimer <= 0){
+        speed = ogspeed;
+      }
+    }
     if (currentPointIndex < pathPoints.size() - 1) {
       PVector target = pathPoints.get(currentPointIndex + 1);
       PVector direction = PVector.sub(target, position);
@@ -29,6 +37,13 @@ class Rabbit {
         position.add(direction);
       }
     }
+  }
+  
+ 
+  
+  void applySlow(float slowAmount, float duration){
+    speed = speed * (1 - slowAmount);
+    slowTimer = duration;
   }
 
   void display() {

@@ -10,6 +10,12 @@ class Bullet {
     this.target = target;
     this.damage = damage;
   }
+  
+   Bullet(float x, float y, Rabbit target, int damage, int num) {
+    position = new PVector(x, y);
+    this.target = target;
+    this.damage = damage;
+  }
 
   void update() {
     if (!hit && target != null) {
