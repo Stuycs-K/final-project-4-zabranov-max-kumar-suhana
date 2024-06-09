@@ -261,7 +261,7 @@ void mousePressed() {
     }
   } else {
   if (placingTower) {
-    if (mouseY < height - 50 && playerMoney >= 50) {
+    if (mouseY < height - 50 && playerMoney >= 50 && !isOnPath(mouseX, mouseY)) {
       towers.add(new Tower(mouseX, mouseY));
       playerMoney -= 50;
       placingTower = false;
@@ -373,4 +373,24 @@ void selectMap(int map) {
     maxwave = 30;
   }
   gameStarted = true;
+}
+
+boolean isOnPath(float x, float y) {
+  float pathwidth = 40;
+  for (int i = 0; i < pathPoints.size() - 1; i++) {
+    PVector p1 = pathPoints.get(i);
+    PVector p2 = pathPoints.get(i + 1);
+    if (distSeg(new PVector(x, y), p1, p2) < pathwidth) {
+      return true;
+    }
+  }
+  return false;
+}
+
+float distSeg(PVector p, PVector v, PVector w) {
+  float length = PVector.dist(v, w) * PVector.dist(v, w);
+  if (length == 0.0) return PVector.dist(p, v);
+  float a = max(0, min(1, PVector.sub(p, v).dot(PVector.sub(w, v)) / length));
+  PVector projection = PVector.add(v, PVector.mult(PVector.sub(w, v), a));
+  return PVector.dist(p, projection);
 }
