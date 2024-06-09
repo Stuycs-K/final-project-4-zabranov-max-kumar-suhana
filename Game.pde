@@ -16,6 +16,9 @@ boolean placingTower = false;
 boolean upgradingTower = false;
 Tower tempTower;
 Tower selectedTower;
+PImage coins;
+PImage heart;
+PImage waveI;
 ArrayList<PVector> pathPoints;
 PImage rabbitImage;
 
@@ -26,6 +29,9 @@ void setup() {
   rabbits = new ArrayList<Rabbit>();
   towers = new ArrayList<Tower>();
   Bullets = new ArrayList<Bullet>();
+  coins = loadImage("coin.png");
+  heart = loadImage("heart.png");
+  waveI = loadImage("waveI.png");
   rabbitsToSpawn = 10; // Start with 10 rabbits in wave 1
   rabbitImage = loadImage("rabbitpic.png"); 
   pathPoints = new ArrayList<PVector>();
@@ -59,19 +65,35 @@ void draw() {
   rect(808, 20, 360, 760);
   fill(0);
   PFont mono;
-  mono = createFont("RaceSport.ttf", 10);
+  mono = createFont("RaceSport.ttf", 14);
   textFont(mono);
-  text("Health: " + playerHealth, 815, 30);
-  text("Money: " + playerMoney, 140, height - 20);
-  text("Wave: " + wave, 220, height - 20);
-  fill(255);
+  image(heart, 830, 50, 30, 30);
+  text("Health: " + playerHealth, 910, 55);
+  image(coins, 830, 100, 30, 30);
+  text("Money: " + playerMoney, 910, 102);
+  image(waveI, 830, 150, 50, 50);
+  text("Wave: " + wave, 890, 149);
+  fill(0);
   rect(width/1.265, width/1.315, 160, 30);
   fill(0);
   if (mouseX >= 400 && mouseX <= 550 &&
       mouseY >= 560 && mouseY <= 590) {
         fill(color(1,147,189));
       }
-  text("Click to Place Tower", width - 130, height - 20);
+  mono = createFont("RaceSport.ttf", 12);
+  textFont(mono);
+  fill(255);
+  rect(815, 250, 340, 90);
+  fill(0);
+  text("Click to Place Tower", 940, 300);
+  fill(255);
+  rect(815, 350, 340, 90);
+  fill(0);
+  text("Click to Place Slow Tower", 960, 400);
+  fill(255);
+  rect(815, 450, 340, 90);
+  fill(0);
+  text("Click to Place Multi Tower", 960, 500);
 
   if (rabbitsSpawned < rabbitsToSpawn) {
     spawnTimer++;
