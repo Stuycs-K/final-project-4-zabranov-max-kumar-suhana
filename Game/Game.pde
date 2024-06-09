@@ -27,6 +27,10 @@ PImage map1;
 PImage map2;
 PImage map3;
 color pathcolor;
+color textcolor;
+float speedmult;
+int healthmult;
+int maxwave;
 
 
 void setup() {
@@ -34,6 +38,7 @@ void setup() {
   menu = loadImage("summer.png");
   map1 = loadImage("grass.jpg");
   map2 = loadImage("sand.jpg");
+  map3 = loadImage("lava.jpg");
   startPoint = new PVector(-1, width/100*17.5);
   endPoint = new PVector(width/8, width/100*79.5);
   rabbits = new ArrayList<Rabbit>();
@@ -105,7 +110,7 @@ void draw() {
   if (rabbitsSpawned < rabbitsToSpawn) {
     int random = (int) (Math.random() * 11);
     spawnTimer++;
-    if (wave <= 3){
+    if (wave >= (-speedmult + 7) && wave < (-speedmult + 9)){
     if (spawnTimer >= spawnInterval) {
       if (random <= 7) {
         rabbits.add(new Rabbit(pathPoints, wave));
@@ -119,14 +124,14 @@ void draw() {
     }
   }
     }
-    else {
+    if (wave >= (-speedmult + 9)) {
     if (spawnTimer >= spawnInterval) {
-      if (random <= 4) {
+      if (random <= 3) {
         rabbits.add(new Rabbit(pathPoints, wave));
         rabbitsSpawned++;
         spawnTimer = 0;
       }
-      else if (random <= 8){
+      else if (random <= 7){
         rabbits.add(new FastRabbit(pathPoints, wave));
         rabbitsSpawned++;
         spawnTimer = 0;
@@ -137,6 +142,13 @@ void draw() {
         spawnTimer = 0;
   }
     }
+  }
+  else {
+    if (spawnTimer >= spawnInterval) {
+    rabbits.add(new Rabbit(pathPoints, wave));
+    rabbitsSpawned++;
+    spawnTimer = 0;
+  }
   }
   }
 
@@ -174,8 +186,7 @@ void draw() {
     tempTower.position.set(mouseX, mouseY);
     tempTower.display();
   }
-
-  if (wave > 15) {
+  if (wave > maxwave) {
       fill(0);
        textSize(32);
        textAlign(CENTER, CENTER);
@@ -183,7 +194,7 @@ void draw() {
        noLoop();
     }
   if (rabbits.size() == 0 && rabbitsSpawned >= rabbitsToSpawn) {
-    if (wave < 15){
+    if (wave < maxwave){
     wave++;
     playerMoney += (100/(-wave - 12) + 20);
     rabbitsToSpawn = 10 + wave * 2; // Scale rabbits count with wave number
@@ -299,6 +310,9 @@ void selectMap(int map) {
   pathPoints.add(new PVector(width/8, width/100*67.5));
   pathPoints.add(endPoint);
   pathcolor = #5C5C5F;
+  speedmult = 1;
+  healthmult = 1;
+  maxwave = 15;
   } else if (map == 2) {
     currentbg = map2;
     startPoint = new PVector(-1, width/20);
@@ -313,11 +327,36 @@ void selectMap(int map) {
     pathPoints.add(new PVector(800, 250));
     pathPoints.add(endPoint);
     pathcolor = #39A9FF;
+    speedmult = 1.5; 
+    healthmult = 2;
+    maxwave = 20;
   } else if (map == 3) {
-    pathPoints.add(new PVector(100, 100));
-    pathPoints.add(new PVector(200, 200));
-    pathPoints.add(new PVector(100, 300));
-    pathPoints.add(new PVector(200, 400));
+    currentbg = map3;
+    startPoint = new PVector(-1, width/5);
+    endPoint = new PVector(0, 605);
+    pathPoints.add(startPoint);
+    pathPoints.add(new PVector(200, width/5));
+    pathPoints.add(new PVector(250, 150));
+    pathPoints.add(new PVector(350, 130));
+    pathPoints.add(new PVector(500, 120));
+    pathPoints.add(new PVector(600, 130));
+    pathPoints.add(new PVector(700, 120));
+    pathPoints.add(new PVector(800, 170));
+    pathPoints.add(new PVector(850, 300));
+    pathPoints.add(new PVector(800, 500));
+    pathPoints.add(new PVector(700, 600));
+    pathPoints.add(new PVector(600, 650));
+    pathPoints.add(new PVector(500, 600));
+    pathPoints.add(new PVector(450, 580));
+    pathPoints.add(new PVector(400, 550));
+    pathPoints.add(new PVector(300, 550));
+    pathPoints.add(new PVector(200, 575));
+    pathPoints.add(new PVector(100, 605));
+    pathPoints.add(endPoint);
+    textcolor = #FFFFFF;
+    speedmult = 4;
+    healthmult = 2;
+    maxwave = 30;
   }
   gameStarted = true;
 }
