@@ -4,11 +4,15 @@ class Bullet {
   float speed = 10;
   boolean hit = false;
   int damage;
+  float range;
+  PVector origin;
 
-  Bullet(float x, float y, Rabbit target, int damage) {
+  Bullet(float x, float y, Rabbit target, int damage, float range) {
+    origin = new PVector(x, y);
     position = new PVector(x, y);
     this.target = target;
     this.damage = damage;
+    this.range = range;
   }
 
   void update() {
@@ -20,6 +24,9 @@ class Bullet {
       if (position.dist(target.position) < 5) {
         hit = true;
         target.takeDamage(damage);
+      }
+      else if (position.dist(origin) > range) {
+        hit = true;
       }
     }
   }
