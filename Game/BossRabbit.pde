@@ -3,7 +3,7 @@ public class BossRabbit extends Rabbit{
     super(pathPoints, wave);
     speed = ((12/(-wave - 7)) + 3) * speedmult;
     maxHealth = 5000 * healthmult;
-    health = maxHealth * healthmult;
+    health = maxHealth;
     image = bossrabbitImage;
   }
   

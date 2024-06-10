@@ -3,7 +3,7 @@ public class TankRabbit extends Rabbit{
     super(pathPoints, wave);
     speed = ((12/(-wave - 7)) + 3) * speedmult;
     maxHealth = wave * 20 * healthmult;
-    health = maxHealth * healthmult;
+    health = maxHealth;
     image = tankrabbitImage;
   }
 }

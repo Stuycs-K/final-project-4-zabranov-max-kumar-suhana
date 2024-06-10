@@ -588,6 +588,9 @@ void mousePressed() {
     playerMoney = 100;
     pathcolor = 0;
     textcolor = 0;
+    healthmult = 1;
+    moneymult = 1;
+    speedmult = 1;
     while (rabbits.size() != 0) { rabbits.remove(0); }
     while (towers.size() != 0) { towers.remove(0); }
     while (mTowers.size() != 0) { mTowers.remove(0); }
