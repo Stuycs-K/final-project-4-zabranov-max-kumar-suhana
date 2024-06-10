@@ -1,9 +1,11 @@
 class slowTower extends Tower{
+  int range;
   float slowDuration;
   float slowAmount;
   
   slowTower(float x, float y){
     super(x, y);
+    this.range = 200;
     this.slowDuration = 3.0;
     this.slowAmount = 0.5;
   }
