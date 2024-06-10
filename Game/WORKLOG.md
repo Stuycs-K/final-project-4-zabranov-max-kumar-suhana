@@ -62,6 +62,11 @@ Converted health and money gain to asymptote equation.
 
 Added new maps, difficulties, boss rabbit, fixed bullet bug, and made it so you can't place towers on path
 
+### 6/9
+
+Merged to main and fixed conflicts, added music, sprites for new towers, sounds for attacking, fixed restart button, fixed map button, and made rabbit sprites flip depending on direction
+
+
 ### 5/30
 
 ## Suhana Kumar
