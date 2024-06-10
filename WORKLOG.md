@@ -66,9 +66,6 @@ Added new maps, difficulties, boss rabbit, fixed bullet bug, and made it so you 
 
 Merged to main and fixed conflicts, added music, sprites for new towers, sounds for attacking, fixed restart button, fixed map button, and made rabbit sprites flip depending on direction
 
-
-### 5/30
-
 ## Suhana Kumar
 
 ### 5/23
