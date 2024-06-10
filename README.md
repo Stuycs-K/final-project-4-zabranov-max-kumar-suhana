@@ -19,7 +19,7 @@ When you run the game, you are greeted with a map select screen. "Grassy Meadows
 
 ### Keybinds
 
-left click - places tower or gives upgrade tower option (depends on whether tower is already placed) \n
+left click - places tower or gives upgrade tower option (depends on whether tower is already placed) 
 ##
 q - cancels tower placement (must have already clicked on a tower button) 
 ##
