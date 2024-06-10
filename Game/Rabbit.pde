@@ -56,7 +56,7 @@ class Rabbit {
     if (flipImage) {
       scale(-1, 1);
     }
-    image(image, 0, 0, 40, 40); // Draw the rabbit image
+    image(image, 0, 0, 40, 40); 
     popMatrix();
     fill(textcolor);
     textSize(10);

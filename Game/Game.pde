@@ -78,7 +78,7 @@ void setup() {
   coins = loadImage("coin.png");
   heart = loadImage("heart.png");
   waveI = loadImage("waveI.png");
-  rabbitsToSpawn = 10; // Start with 10 rabbits in wave 1
+  rabbitsToSpawn = 10; 
   rabbitImage = loadImage("rabbitpic.png"); 
   fastrabbitImage = loadImage("fastrabbit.png");
   tankrabbitImage = loadImage("tankrabbit.png");
@@ -244,7 +244,7 @@ void draw() {
     r.update();
     r.display();
     if (r.isDead()) {
-      playerMoney += ((1100/(-(rabbits.get(i).getMaxHealth()) - 62)) + 20) * moneymult; // Gain money for killing a rabbit
+      playerMoney += ((1100/(-(rabbits.get(i).getMaxHealth()) - 62)) + 20) * moneymult; 
       rabbits.remove(i);
     } else if (r.reachedEnd()) {
       playerHealth -= 10; 
@@ -306,7 +306,7 @@ void draw() {
     else if (wave < maxwave){
     wave++;
     playerMoney += (100/(-wave - 12) + 20) * moneymult;
-    rabbitsToSpawn = 10 + wave * 2; // Scale rabbits count with wave number
+    rabbitsToSpawn = 10 + wave * 2; 
     rabbitsSpawned = 0;
     println("Wave " + wave);
     }
@@ -336,7 +336,6 @@ void draw() {
       textSize(10);
       text("Attack Speed: " + (60.0 / selectedTower.fireRate) + " Bullets/sec", width / 2, height / 2 + 30);
       fill(0, 150, 0);
-      //rect(width/2 - 50, height / 2 + 40, 200, 20);
       fill(0);
       textSize(20);
       text("Press 'SPACE BAR' to Upgrade for " + selectedTower.getUpgradeCost(), width / 2 - 10, height / 2 + 130);
@@ -370,7 +369,6 @@ if (upgradingSTower && selectedSTower != null) {
       textSize(10);
       text("Slow Duration: " + selectedSTower.slowDuration, width / 2, height / 2 + 30);
       fill(0, 150, 0);
-      //rect(width/2 - 50, height / 2 + 40, 200, 20);
       fill(0);
       textSize(20);
       text("Press 'SPACE BAR' to Upgrade for " + selectedSTower.getUpgradeCost(), width / 2 - 10, height / 2 + 130);
@@ -404,7 +402,6 @@ if (upgradingMTower && selectedMTower != null) {
       textSize(10);
       text("Attack Amount: " + selectedMTower.maxTargets + " Rabbits", width / 2, height / 2 + 30);
       fill(0, 150, 0);
-      //rect(width/2 - 50, height / 2 + 40, 200, 20);
       fill(0);
       textSize(20);
       text("Press 'SPACE BAR' to Upgrade for " + selectedMTower.getUpgradeCost(), width / 2 - 10, height / 2 + 130);
@@ -599,7 +596,6 @@ void mousePressed() {
     while (pathPoints.size() != 0) { pathPoints.remove(0); }
      PFont f = createFont("Lucida Sans", 12);
      textFont(f);
-//}
 }
 }
 

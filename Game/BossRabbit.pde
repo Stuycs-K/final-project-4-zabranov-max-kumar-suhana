@@ -14,7 +14,7 @@ public class BossRabbit extends Rabbit{
     if (flipImage) {
       scale(-1, 1);
     }
-    image(image, 0, 0, 120, 120); // Draw the rabbit image
+    image(image, 0, 0, 120, 120); 
     popMatrix();
     fill(textcolor);
     textSize(16);
