@@ -29,8 +29,8 @@ r - spawns 1 rabbit
 ##
 f - spawns 1 fast rabbit 
 ##
-t - spawns 1 tank rabbit ##
-
+t - spawns 1 tank rabbit
+##
 b - spawns 1 boss rabbit 
 ##
 w - skips 1 wave 
