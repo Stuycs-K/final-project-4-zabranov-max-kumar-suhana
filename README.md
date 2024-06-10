@@ -20,7 +20,7 @@ When you run the game, you are greeted with a map select screen. "Grassy Meadows
 
 left click - places tower or gives upgrade tower option (depends on whether tower is already placed) \n
 q - cancels tower placement (must have already clicked on a tower button) \n
-m - gives 1000 money \n
+m - gives 1000 money__
 r - spawns 1 rabbit \n
 f - spawns 1 fast rabbit \n
 t - spawns 1 tank rabbit \n
