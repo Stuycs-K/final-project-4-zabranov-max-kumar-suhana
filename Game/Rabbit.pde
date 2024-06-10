@@ -6,17 +6,19 @@ class Rabbit {
   int health;
   int maxHealth;
   PImage image;
+  boolean flipImage;
 
   Rabbit(ArrayList<PVector> pathPoints, int wave) {
     this.pathPoints = pathPoints;
     currentPointIndex = 0;
     position = pathPoints.get(currentPointIndex).copy();
-    speed = 1 + (wave - 1) * 0.2;
+    speed = 1 + (wave - 1) * 0.2 * speedmult;
     ogspeed = speed;
-    maxHealth = wave * 10;
+    maxHealth = wave * 10 * healthmult;
     health = maxHealth;
     image = rabbitImage;
     slowTimer = 0;
+    flipImage = false;
   }
 
   void update() {
@@ -35,6 +37,7 @@ class Rabbit {
         direction.normalize();
         direction.mult(speed);
         position.add(direction);
+        flipImage = (direction.x < 0);
       }
     }
   }
@@ -48,8 +51,14 @@ class Rabbit {
 
   void display() {
     imageMode(CENTER);
-    image(image, position.x, position.y, 40, 40);
-    fill(0);
+    pushMatrix();
+    translate(position.x, position.y);
+    if (flipImage) {
+      scale(-1, 1);
+    }
+    image(image, 0, 0, 40, 40); // Draw the rabbit image
+    popMatrix();
+    fill(textcolor);
     textSize(10);
     textAlign(CENTER, BOTTOM);
     text(health + "/" + maxHealth, position.x, position.y - 30);

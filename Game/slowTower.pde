@@ -6,6 +6,9 @@ class slowTower extends Tower{
     super(x, y);
     this.slowDuration = 3.0;
     this.slowAmount = 0.5;
+    damage = 2;
+    image = slowImage;
+    shootsound = slowshoot;
   }
 
     void update(ArrayList<Rabbit> rabbits) {
@@ -14,7 +17,9 @@ class slowTower extends Tower{
       for (Rabbit r : rabbits) {
         if (PVector.dist(position, r.position) <= range) {
           fireCooldown = fireRate;
-          Bullets.add(new Bullet(position.x, position.y, r, damage));
+          Bullets.add(new Bullet(position.x, position.y, r, damage, range, 1000));
+          shootsound.play();
+          flipImage = (r.position.x < position.x);
           r.applySlow(slowAmount, slowDuration);
           break;
         }
@@ -32,12 +37,22 @@ class slowTower extends Tower{
       if (slowDuration < 10.0){
         slowDuration++;
       }
-      upgradeCost += 50;
+      upgradeCost += 100;
+      range += 5;
+      damage += 4;
     }
   }
   }
   
     void display() {
+    imageMode(CENTER);
+    pushMatrix();
+    translate(position.x, position.y);
+    if (flipImage) {
+      scale(-1, 1);
+    }
+    image(image, 0, 0, 60, 40);
+    popMatrix();
     if (level == 1) {
       fill(50, 100, 200);
     } else if (level == 2) {
@@ -45,7 +60,6 @@ class slowTower extends Tower{
     } else if (level >= 3 && level <=15) {
       fill(150, 200, 300);
     }
-    rect(position.x - 10, position.y - 10, 20, 20);
     noFill();
     stroke(0, 0, 255, 50);
     ellipse(position.x, position.y, range * 2, range * 2);

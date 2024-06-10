@@ -1,14 +1,16 @@
-class Tower {
-  PVector position;
-  float range;
-  int damage;
-  int fireRate;
-  int fireCooldown;
-  int level;
-  int upgradeCost;
-  int upCount;
-  int count;
-
+public class Tower {
+    PVector position;
+    float range;
+    int damage;
+    int fireRate;
+    int fireCooldown;
+    int level;
+    int upgradeCost;
+    int upCount;
+    int count;
+    PImage image;
+    boolean flipImage;
+    SoundFile shootsound;
 
   Tower(float x, float y) {
     position = new PVector(x, y);
@@ -18,6 +20,9 @@ class Tower {
     fireCooldown = 0;
     level = 1;
     upgradeCost = 75;
+    image = towerImage;
+    flipImage = false;
+    shootsound = towershoot;
   }
 
   void update(ArrayList<Rabbit> rabbits) {
@@ -26,7 +31,9 @@ class Tower {
       for (Rabbit r : rabbits) {
         if (PVector.dist(position, r.position) <= range) {
           fireCooldown = fireRate;
-          Bullets.add(new Bullet(position.x, position.y, r, damage));
+          Bullets.add(new Bullet(position.x, position.y, r, damage, range));
+          shootsound.play();
+          flipImage = (r.position.x < position.x);
           break;
         }
       }
@@ -38,6 +45,14 @@ class Tower {
   }
 
   void display() {
+    imageMode(CENTER);
+    pushMatrix();
+    translate(position.x, position.y);
+    if (flipImage) {
+      scale(-1, 1);
+    }
+    image(image, 0, 0, 60, 40);
+    popMatrix();
     if (level == 1) {
       fill(50, 100, 200);
     } else if (level == 2) {
@@ -45,14 +60,12 @@ class Tower {
     } else if (level >= 3 && level <=15) {
       fill(150, 200, 300);
     }
-    rect(position.x - 10, position.y - 10, 20, 20);
     noFill();
     stroke(0, 0, 255, 50);
     ellipse(position.x, position.y, range * 2, range * 2);
   }
 
   void upgrade() {
-    
     if (playerMoney >= upgradeCost) {
       if (count < 5){
       count++;

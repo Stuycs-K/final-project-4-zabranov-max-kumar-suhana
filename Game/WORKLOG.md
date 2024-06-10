@@ -38,6 +38,30 @@ started on map class and worked more on path
 
 finished the path, added bullet class, and made general changes to classes for the game to work
 
+### 6/3
+
+created fast rabbit class and added spawning of fast rabbits in game
+
+### 6/4
+
+created tank rabbit class and added spawning of tank rabbits in game
+
+### 6/5
+
+Added tank rabbit sprite and spawning of tank rabbits
+
+### 6/6
+
+Fixed tank rabbit and fast rabbit so towers can shoot at them. Added a tower sprite.
+
+### 6/7
+
+Converted health and money gain to asymptote equation.
+
+### 6/8
+
+Added new maps, difficulties, boss rabbit, fixed bullet bug, and made it so you can't place towers on path
+
 ### 5/30
 
 ## Suhana Kumar
