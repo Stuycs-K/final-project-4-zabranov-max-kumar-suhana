@@ -678,6 +678,7 @@ void selectMap(int map) {
   healthmult = 1;
   maxwave = 15;
   currmusic = music1;
+  moneymult = 1;
   } else if (map == 2) {
     currentbg = map2;
     startPoint = new PVector(-1, (width - 180)/20);
